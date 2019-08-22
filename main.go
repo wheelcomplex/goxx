@@ -26,7 +26,8 @@ func realMain() int {
 	var flagGcflags string
 	var flagCgo, flagRebuild, flagListOSArch bool
 	var flagGoCmd string
-	flags := flag.NewFlagSet("gox", flag.ExitOnError)
+	var showHelp bool
+	flags := flag.NewFlagSet("goxx", flag.ExitOnError)
 	flags.Usage = func() { printUsage() }
 	flags.Var(platformFlag.ArchFlagValue(), "arch", "arch to build for or skip")
 	flags.Var(platformFlag.OSArchFlagValue(), "osarch", "os/arch pairs to build for or skip")
@@ -42,7 +43,13 @@ func realMain() int {
 	flags.BoolVar(&flagListOSArch, "osarch-list", false, "")
 	flags.StringVar(&flagGcflags, "gcflags", "", "")
 	flags.StringVar(&flagGoCmd, "gocmd", "go", "")
+	flags.BoolVar(&showHelp, "help", false, "show help")
 	if err := flags.Parse(os.Args[1:]); err != nil {
+		flags.Usage()
+		return 1
+	}
+
+	if showHelp {
 		flags.Usage()
 		return 1
 	}
@@ -167,7 +174,7 @@ func printUsage() {
 	fmt.Fprintf(os.Stderr, helpText)
 }
 
-const helpText = `Usage: gox [options] [packages]
+const helpText = `Usage: goxx [options] [packages]
 
   Gox cross-compiles Go applications in parallel.
 
@@ -176,13 +183,13 @@ const helpText = `Usage: gox [options] [packages]
 
 Options:
 
-  -arch=""            Space-separated list of architectures to build for
+  -arch=""            Space-separated list of architectures to build for, separated by space or ','
   -build-toolchain    Build cross-compilation toolchain
   -cgo                Sets CGO_ENABLED=1, requires proper C toolchain (advanced)
   -gcflags=""         Additional '-gcflags' value to pass to go build
   -ldflags=""         Additional '-ldflags' value to pass to go build
   -tags=""            Additional '-tags' value to pass to go build
-  -os=""              Space-separated list of operating systems to build for
+  -os=""              list of operating systems to build for, separated by space or ','
   -osarch=""          Space-separated list of os/arch pairs to build for
   -osarch-list        List supported os/arch pairs for your Go version
   -output="foo"       Output path template. See below for more info
@@ -190,6 +197,7 @@ Options:
   -gocmd="go"         Build command, defaults to Go
   -rebuild            Force rebuilding of package that were up to date
   -verbose            Verbose mode
+  -help               show help
 
 Output path template:
 

@@ -21,7 +21,34 @@ func (p *PlatformFlag) Platforms(supported []Platform) []Platform {
 	// is much easier to understand this method if you pair this with the
 	// table of test cases it has.
 
-	// Build a list of OS and archs NOT to build
+	// convert a,b,c list to array
+	vList := []string{}
+	for _, v := range p.Arch {
+		vList = append(vList, strings.Split(strings.ReplaceAll(v, ",", " "), " ")...)
+	}
+	if len(vList) > 0 {
+		p.Arch = []string{}
+		for _, v := range vList {
+			if len(v) > 0 {
+				p.Arch = append(p.Arch, v)
+			}
+		}
+	}
+
+	vList = []string{}
+	for _, v := range p.OS {
+		vList = append(vList, strings.Split(strings.ReplaceAll(v, ",", " "), " ")...)
+	}
+	if len(vList) > 0 {
+		p.OS = []string{}
+		for _, v := range vList {
+			if len(v) > 0 {
+				p.OS = append(p.OS, v)
+			}
+		}
+	}
+
+	// Build a list of OS and Archs NOT to build
 	ignoreArch := make(map[string]struct{})
 	includeArch := make(map[string]struct{})
 	ignoreOS := make(map[string]struct{})
@@ -57,7 +84,7 @@ func (p *PlatformFlag) Platforms(supported []Platform) []Platform {
 
 	// We're building a list of new platforms, so build the list
 	// based only on the configured OS/arch pairs.
-	var prefilter []Platform = nil
+	var prefilter []Platform
 	if len(includeOSArch) > 0 {
 		prefilter = make([]Platform, 0, len(p.Arch)*len(p.OS)+len(includeOSArch))
 		for _, v := range includeOSArch {

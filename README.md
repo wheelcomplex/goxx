@@ -12,7 +12,7 @@ checkout that tag and compile.
 ```bash
 $ go get github.com/wheelcomplex/goxx
 ...
-$ gox -h
+$ goxx -h
 ...
 ```
 
@@ -20,11 +20,11 @@ $ gox -h
 
 If you know how to use `go build`, then you know how to use Gox. For
 example, to build the current package, specify no parameters and just
-call `gox`. Gox will parallelize based on the number of CPUs you have
+call `goxx`. Gox will parallelize based on the number of CPUs you have
 by default and build for every platform by default:
 
 ```bash
-$ gox
+$ goxx
 Number of parallel builds: 4
 
 -->      darwin/386: github.com/wheelcomplex/goxx
@@ -48,32 +48,32 @@ Number of parallel builds: 4
 Or, if you want to build a package and sub-packages:
 
 ```bash
-$ gox ./...
+$ goxx ./...
 ...
 ```
 
 Or, if you want to build multiple distinct packages:
 
 ```bash
-$ gox github.com/wheelcomplex/goxx github.com/hashicorp/serf
+$ goxx github.com/wheelcomplex/goxx github.com/hashicorp/serf
 ...
 ```
 
 Or if you want to just build for linux:
 
 ```bash
-$ gox -os="linux"
+$ goxx -os="linux"
 ...
 ```
 
 Or maybe you just want to build for 64-bit linux:
 
 ```bash
-$ gox -osarch="linux/amd64"
+$ goxx -osarch="linux/amd64"
 ...
 ```
 
-And more! Just run `gox -h` for help and additional information.
+And more! Just run `goxx -h` for help and additional information.
 
 ## Versus Other Cross-Compile Tools
 

@@ -161,14 +161,14 @@ func GoRoot() (string, error) {
 }
 
 // GoVersion reads the version of `go` that is on the PATH. This is done
-// instead of `runtime.Version()` because it is possible to run gox against
+// instead of `runtime.Version()` because it is possible to run goxx against
 // another Go version.
 func GoVersion() (string, error) {
 	// NOTE: We use `go run` instead of `go version` because the output
 	// of `go version` might change whereas the source is guaranteed to run
 	// for some time thanks to Go's compatibility guarantee.
 
-	td, err := ioutil.TempDir("", "gox")
+	td, err := ioutil.TempDir("", "goxx")
 	if err != nil {
 		return "", err
 	}
