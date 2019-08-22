@@ -46,8 +46,8 @@ var (
 		"ppc64le",
 	}
 
-	// Platforms_1_0 is the os/arch list for go 1.0
-	Platforms_1_0 = []Platform{
+	// Platforms1_0 is the os/arch list for go 1.0
+	Platforms1_0 = []Platform{
 		{"darwin", "386", true},
 		{"darwin", "amd64", true},
 		{"linux", "386", true},
@@ -61,8 +61,8 @@ var (
 		{"windows", "amd64", true},
 	}
 
-	// Platforms_1_1 append the os/arch list from go 1.1
-	Platforms_1_1 = append(Platforms_1_0, []Platform{
+	// Platforms1_1 append the os/arch list from go 1.1
+	Platforms1_1 = append(Platforms1_0, []Platform{
 		{"freebsd", "arm", true},
 		{"netbsd", "386", true},
 		{"netbsd", "amd64", true},
@@ -70,8 +70,8 @@ var (
 		{"plan9", "386", false},
 	}...)
 
-	// Platforms_1_3 append the os/arch list from go 1.3
-	Platforms_1_3 = append(Platforms_1_1, []Platform{
+	// Platforms1_3 append the os/arch list from go 1.3
+	Platforms1_3 = append(Platforms1_1, []Platform{
 		{"dragonfly", "386", false},
 		{"dragonfly", "amd64", false},
 		{"nacl", "amd64", false},
@@ -80,13 +80,14 @@ var (
 		{"solaris", "amd64", false},
 	}...)
 
-	// Platforms_1_4 append the os/arch list from go 1.4
-	Platforms_1_4 = append(Platforms_1_3, []Platform{
+	// Platforms1_4 append the os/arch list from go 1.4
+	Platforms1_4 = append(Platforms1_3, []Platform{
 		{"android", "arm", false},
 		{"plan9", "amd64", false},
 	}...)
 
-	Platforms_1_5 = append(Platforms_1_4, []Platform{
+	// Platforms1_5 append the os/arch list from go 1.5
+	Platforms1_5 = append(Platforms1_4, []Platform{
 		{"darwin", "arm", false},
 		{"darwin", "arm64", false},
 		{"linux", "arm64", false},
@@ -99,17 +100,17 @@ var (
 // the version of Go that is
 func SupportedPlatforms(v string) []Platform {
 	if strings.HasPrefix(v, "go1.0") {
-		return Platforms_1_0
+		return Platforms1_0
 	} else if strings.HasPrefix(v, "go1.1") {
-		return Platforms_1_1
+		return Platforms1_1
 	} else if strings.HasPrefix(v, "go1.3") {
-		return Platforms_1_3
+		return Platforms1_3
 	} else if strings.HasPrefix(v, "go1.4") {
-		return Platforms_1_4
+		return Platforms1_4
 	} else if strings.HasPrefix(v, "go1.5") {
-		return Platforms_1_5
+		return Platforms1_5
 	}
 
 	// Assume latest
-	return Platforms_1_5
+	return Platforms1_5
 }

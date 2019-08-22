@@ -1,3 +1,5 @@
+.vscode/
+
 goxx
 # Binaries for programs and plugins
 *.exe
