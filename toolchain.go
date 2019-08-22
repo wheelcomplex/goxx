@@ -3,7 +3,6 @@ package main
 import (
 	"bytes"
 	"fmt"
-	"github.com/mitchellh/iochan"
 	"io"
 	"os"
 	"os/exec"
@@ -124,7 +123,7 @@ func buildToolchain(wg *sync.WaitGroup, semaphore chan int, root string, platfor
 		doneCh := make(chan struct{})
 		go func() {
 			defer close(doneCh)
-			for line := range iochan.DelimReader(r, '\n') {
+			for line := range DelimReader(r, '\n') {
 				fmt.Printf("%s: %s", platform.String(), line)
 			}
 		}()

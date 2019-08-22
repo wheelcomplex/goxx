@@ -23,6 +23,7 @@ func (p *Platform) String() string {
 }
 
 var (
+	// OsList is GOOS list
 	OsList = []string{
 		"darwin",
 		"dragonfly",
@@ -35,6 +36,7 @@ var (
 		"windows",
 	}
 
+	// ArchList is GOARCH list
 	ArchList = []string{
 		"386",
 		"amd64",
@@ -44,6 +46,7 @@ var (
 		"ppc64le",
 	}
 
+	// Platforms_1_0 is the os/arch list for go 1.0
 	Platforms_1_0 = []Platform{
 		{"darwin", "386", true},
 		{"darwin", "amd64", true},
@@ -58,6 +61,7 @@ var (
 		{"windows", "amd64", true},
 	}
 
+	// Platforms_1_1 append the os/arch list from go 1.1
 	Platforms_1_1 = append(Platforms_1_0, []Platform{
 		{"freebsd", "arm", true},
 		{"netbsd", "386", true},
@@ -66,6 +70,7 @@ var (
 		{"plan9", "386", false},
 	}...)
 
+	// Platforms_1_3 append the os/arch list from go 1.3
 	Platforms_1_3 = append(Platforms_1_1, []Platform{
 		{"dragonfly", "386", false},
 		{"dragonfly", "amd64", false},
@@ -75,6 +80,7 @@ var (
 		{"solaris", "amd64", false},
 	}...)
 
+	// Platforms_1_4 append the os/arch list from go 1.4
 	Platforms_1_4 = append(Platforms_1_3, []Platform{
 		{"android", "arm", false},
 		{"plan9", "amd64", false},

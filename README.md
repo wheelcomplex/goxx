@@ -10,7 +10,7 @@ To install Gox, please use `go get`. We tag versions so feel free to
 checkout that tag and compile.
 
 ```
-$ go get github.com/mitchellh/gox
+$ go get github.com/wheelcomplex/goxx
 ...
 $ gox -h
 ...
@@ -27,22 +27,22 @@ by default and build for every platform by default:
 $ gox
 Number of parallel builds: 4
 
--->      darwin/386: github.com/mitchellh/gox
--->    darwin/amd64: github.com/mitchellh/gox
--->       linux/386: github.com/mitchellh/gox
--->     linux/amd64: github.com/mitchellh/gox
--->       linux/arm: github.com/mitchellh/gox
--->     freebsd/386: github.com/mitchellh/gox
--->   freebsd/amd64: github.com/mitchellh/gox
--->     openbsd/386: github.com/mitchellh/gox
--->   openbsd/amd64: github.com/mitchellh/gox
--->     windows/386: github.com/mitchellh/gox
--->   windows/amd64: github.com/mitchellh/gox
--->     freebsd/arm: github.com/mitchellh/gox
--->      netbsd/386: github.com/mitchellh/gox
--->    netbsd/amd64: github.com/mitchellh/gox
--->      netbsd/arm: github.com/mitchellh/gox
--->       plan9/386: github.com/mitchellh/gox
+-->      darwin/386: github.com/wheelcomplex/goxx
+-->    darwin/amd64: github.com/wheelcomplex/goxx
+-->       linux/386: github.com/wheelcomplex/goxx
+-->     linux/amd64: github.com/wheelcomplex/goxx
+-->       linux/arm: github.com/wheelcomplex/goxx
+-->     freebsd/386: github.com/wheelcomplex/goxx
+-->   freebsd/amd64: github.com/wheelcomplex/goxx
+-->     openbsd/386: github.com/wheelcomplex/goxx
+-->   openbsd/amd64: github.com/wheelcomplex/goxx
+-->     windows/386: github.com/wheelcomplex/goxx
+-->   windows/amd64: github.com/wheelcomplex/goxx
+-->     freebsd/arm: github.com/wheelcomplex/goxx
+-->      netbsd/386: github.com/wheelcomplex/goxx
+-->    netbsd/amd64: github.com/wheelcomplex/goxx
+-->      netbsd/arm: github.com/wheelcomplex/goxx
+-->       plan9/386: github.com/wheelcomplex/goxx
 ```
 
 Or, if you want to build a package and sub-packages:
@@ -55,7 +55,7 @@ $ gox ./...
 Or, if you want to build multiple distinct packages:
 
 ```
-$ gox github.com/mitchellh/gox github.com/hashicorp/serf
+$ gox github.com/wheelcomplex/goxx github.com/hashicorp/serf
 ...
 ```
 
