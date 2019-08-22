@@ -32,7 +32,7 @@ type CompileOpts struct {
 	GoCmd       string
 }
 
-// GoCrossCompile
+// GoCrossCompile launch compile command for os/arch
 func GoCrossCompile(opts *CompileOpts) error {
 	env := append(os.Environ(),
 		"GOOS="+opts.Platform.OS,
@@ -113,8 +113,26 @@ func GoCrossCompile(opts *CompileOpts) error {
 		"-o", outputPathReal,
 		opts.PackagePath)
 
+	// clean env
+	env = envCompact(env)
+
 	_, err = execGo(opts.GoCmd, env, chdir, args...)
 	return err
+}
+
+// envCompact deduplicate the env list
+func envCompact(orig []string) (env []string) {
+	envMap := make(map[string]string)
+	for _, line := range orig {
+		arr := strings.SplitN(line, "=", 2)
+		if len(arr) > 1 {
+			envMap[arr[0]] = arr[1]
+		}
+	}
+	for k, v := range envMap {
+		env = append(env, k+"="+v)
+	}
+	return
 }
 
 // GoMainDirs returns the file paths to the packages that are "main"
